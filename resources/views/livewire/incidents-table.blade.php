@@ -7,7 +7,7 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-    {{ $row->status }}
+    {{ $row->statusLabel }}
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
