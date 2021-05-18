@@ -21,11 +21,13 @@ class UsersTable extends DataTableComponent
                 ->searchable(),
             Column::make('Verified', 'email_verified_at')
                 ->sortable(),
+            Column::make('Admin', 'is_admin')
+                ->sortable(),
         ];
     }
 
     public function query(): Builder
     {
-        return User::where('name', 'Admin');
+        return User::where();
     }
 }
