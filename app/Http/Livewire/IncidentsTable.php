@@ -13,13 +13,13 @@ class IncidentsTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Title', 'title')
+            Column::make('title')
                 ->sortable()
                 ->searchable(),
-            Column::make('Severity', 'severity')
+            Column::make('severity')
                 ->sortable()
                 ->searchable(),
-            Column::make('Status', 'status')
+            Column::make('Status')
                 ->sortable(),
             Column::make('Author'),
             Column::blank(),
