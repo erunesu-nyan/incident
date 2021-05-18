@@ -30,4 +30,9 @@ class UsersTable extends DataTableComponent
     {
         return User::query();
     }
+
+    public function rowView(): string
+    {
+        return 'livewire.users-table';
+    }
 }
