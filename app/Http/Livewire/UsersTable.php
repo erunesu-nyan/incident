@@ -28,6 +28,6 @@ class UsersTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return User::where();
+        return User::query();
     }
 }
