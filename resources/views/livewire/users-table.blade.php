@@ -17,3 +17,11 @@
         <span class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-700 rounded">No</span>
     @endif
 </x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <x-jet-button class="bg-purple-700" wire:click="editUser">Edit</x-jet-button>
+</x-livewire-tables::table.cell>
+
+<x-livewire-tables::table.cell>
+    <x-jet-button class="bg-red-700" wire:click="deleteUser">Delete</x-jet-button>
+</x-livewire-tables::table.cell>

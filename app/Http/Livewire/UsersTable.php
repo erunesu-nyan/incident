@@ -23,6 +23,8 @@ class UsersTable extends DataTableComponent
                 ->sortable(),
             Column::make('Admin', 'is_admin')
                 ->sortable(),
+            Column::blank(),
+            Column::blank(),
         ];
     }
 
@@ -34,5 +36,15 @@ class UsersTable extends DataTableComponent
     public function rowView(): string
     {
         return 'livewire.users-table';
+    }
+
+    public function editUser()
+    {
+        return;
+    }
+
+    public function deleteUser()
+    {
+        return;
     }
 }
