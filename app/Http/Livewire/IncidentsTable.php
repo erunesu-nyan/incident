@@ -4,25 +4,24 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Database\Eloquent\Builder;
-use App\Models\User;
+use App\Models\Incident;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-class UsersTable extends DataTableComponent
+class IncidentsTable extends DataTableComponent
 {
     public function columns(): array
     {
         return [
-            Column::make('name')
+            Column::make('title')
                 ->sortable()
                 ->searchable(),
-            Column::make('E-mail', 'email')
+            Column::make('severity')
                 ->sortable()
                 ->searchable(),
-            Column::make('Verified', 'email_verified_at')
+            Column::make('Status')
                 ->sortable(),
-            Column::make('Admin', 'is_admin')
-                ->sortable(),
+            Column::make('Author'),
             Column::blank(),
             Column::blank(),
         ];
@@ -30,20 +29,20 @@ class UsersTable extends DataTableComponent
 
     public function query(): Builder
     {
-        return User::query();
+        return Incident::query();
     }
 
     public function rowView(): string
     {
-        return 'livewire.users-table';
+        return 'livewire.incidents-table';
     }
 
-    public function editUser()
+    public function editIncident()
     {
         return;
     }
 
-    public function deleteUser()
+    public function deleteIncident()
     {
         return;
     }

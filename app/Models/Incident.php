@@ -52,4 +52,20 @@ class Incident extends Model
     {
         return $this->belongsTo(User::class, 'author_id');
     }
+
+    public function getStatusLabelAttribute()
+    {
+        switch ($this->status) {
+            case $this->STATUS_STAGING:
+                return "Staging";
+            case $this->STATUS_INVESTIGATION:
+                return "Investigation in Progress";
+            case $this->STATUS_CORRECTIVE_ACTION:
+                return "Corrective Action in Progress";
+            case $this->STATUS_DONE:
+                return "Done";
+            case $this->STATUS_APPROVED:
+                return "Approved";
+        }
+    }
 }
