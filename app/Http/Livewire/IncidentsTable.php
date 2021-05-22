@@ -10,6 +10,8 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class IncidentsTable extends DataTableComponent
 {
+    public $isModalOpen = 0;
+
     public function columns(): array
     {
         return [
@@ -37,13 +39,28 @@ class IncidentsTable extends DataTableComponent
         return 'livewire.incidents-table';
     }
 
+    public function createIncident()
+    {
+        $this->openModalPopover();
+    }
+
+    public function openModalPopover()
+    {
+        $this->isModalOpen = true;
+    }
+
+    public function closeModalPopover()
+    {
+        $this->isModalOpen = false;
+    }
+
     public function editIncident()
     {
         return;
     }
 
-    public function deleteIncident()
+    public function deleteIncident($id)
     {
-        return;
+        Incident::find($id)->delete();
     }
 }

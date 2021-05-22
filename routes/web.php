@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\IncidentsTable;
+use App\Http\Livewire\UsersTable;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,17 +19,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+     Route::get('/incidents', function () {
+        return view('incidents');
+    })->name('incidents');
+     Route::get('/users', function () {
+        return view('users');
+    })->name('users');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/incidents', function () {
-    return view('incidents');
-})->name('incidents');
+    // Route::get('/incidents', IncidentsTable::class)->name('incidents');
+    // Route::get('/users', UsersTable::class)->name('users');
+});
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/users', function () {
-    return view('users');
-})->name('users');
-Route::middleware(['auth:sanctum', 'verified'])->get('/incident', function () {
-    return view('incident');
-})->name('incident');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/incidents', function () {
+//     return view('incidents');
+// })->name('incidents');
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/users', function () {
+//     return view('users');
+// })->name('users');
