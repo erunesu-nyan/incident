@@ -6,9 +6,9 @@
     {{ $row->email }}
 </x-livewire-tables::table.cell>
 
-<x-livewire-tables::table.cell>
+<!-- <x-livewire-tables::table.cell>
     {{ $row->email_verified_at }}
-</x-livewire-tables::table.cell>
+</x-livewire-tables::table.cell> -->
 
 <x-livewire-tables::table.cell>
     @if ($row->is_admin)
@@ -18,10 +18,12 @@
     @endif
 </x-livewire-tables::table.cell>
 
-<x-livewire-tables::table.cell>
-    <x-jet-button class="bg-purple-700" wire:click="editUser">Edit</x-jet-button>
-</x-livewire-tables::table.cell>
+@if ($row->is_admin)
+    <x-livewire-tables::table.cell>
+        <x-jet-button class="bg-yellow-700" wire:click="demoteUser{{ $row->id }}">Disable Admin</x-jet-button>
+    </x-livewire-tables::table.cell>
+@endif
 
 <x-livewire-tables::table.cell>
-    <x-jet-button class="bg-red-700" wire:click="deleteUser">Delete</x-jet-button>
+    <x-jet-button class="bg-red-700" wire:click="deleteUser{{ $row->id }}">Delete</x-jet-button>
 </x-livewire-tables::table.cell>

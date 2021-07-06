@@ -19,8 +19,8 @@ class UsersTable extends DataTableComponent
             Column::make('E-mail', 'email')
                 ->sortable()
                 ->searchable(),
-            Column::make('Verified', 'email_verified_at')
-                ->sortable(),
+            // Column::make('Verified', 'email_verified_at')
+            //     ->sortable(),
             Column::make('Admin', 'is_admin')
                 ->sortable(),
             Column::blank(),
@@ -38,13 +38,18 @@ class UsersTable extends DataTableComponent
         return 'livewire.users-table';
     }
 
-    public function editUser()
+    public function demoteUser(int $id)
     {
-        return;
+        $user = User::where('id', $id);
+        $user->is_admin = false;
+        $user->save();
+        $this->refresh = true;
     }
 
-    public function deleteUser()
+    public function deleteUser(int $id)
     {
-        return;
+        $user = User::where('id', $id);
+        $user->delete();
+        $this->refresh = true;
     }
 }

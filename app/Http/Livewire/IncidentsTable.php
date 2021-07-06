@@ -20,8 +20,16 @@ class IncidentsTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             Column::make('Status')
-                ->sortable(),
-            Column::make('Author'),
+                ->sortable()
+                ->searchable(),
+            Column::make('Author')
+                ->sortable()
+                ->searchable(function (Builder $query, $searchTerm) {
+                    $query->orWhereHas('author', function ($query) use ($searchTerm) {
+                        $query->where('name', 'LIKE', "%{$searchTerm}%");
+                    });
+                }),
+            Column::blank(),
             Column::blank(),
             Column::blank(),
         ];
@@ -37,13 +45,20 @@ class IncidentsTable extends DataTableComponent
         return 'livewire.incidents-table';
     }
 
-    public function editIncident()
+    public function read(int $id)
     {
-        return;
+        return redirect()->to("/incidents/$id");
     }
 
-    public function deleteIncident()
+    public function edit(int $id)
     {
-        return;
+        return redirect()->to("/incidents/edit/$id");;
+    }
+
+    public function delete(int $id)
+    {
+        $incident = Incident::where('id', $id);
+        $incident->delete();
+        $this->refresh = true;
     }
 }

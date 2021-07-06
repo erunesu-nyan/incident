@@ -11,9 +11,11 @@ class Investigation extends Model
 
     protected $table = 'investigations';
 
-    public $STATUS_PENDING = 0;
-    public $STATUS_WIP = 1;
-    public $STATUS_DONE = 2;
+    // a set of constants for investigation selectable fields
+
+    public const STATUS_PENDING = 0;
+    public const STATUS_WIP = 1;
+    public const STATUS_DONE = 2;
 
     /**
      * The attributes that are mass assignable.
@@ -22,9 +24,7 @@ class Investigation extends Model
      */
     protected $fillable = [
         'result',
-        'repeatable',
-        'result',
-        'corrective_action_form_file_path',
+        'status',
     ];
 
     /**
@@ -41,5 +41,19 @@ class Investigation extends Model
     public function investigator()
     {
         return $this->belongsTo(User::class, 'investigator_id');
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        switch ($this->status) {
+            case Self::STATUS_PENDING:
+                return "Pending";
+            case Self::STATUS_WIP:
+                return "Work in Progress";
+            case Self::STATUS_DONE:
+                return "Done";
+            default:
+                return "-";
+        }
     }
 }
