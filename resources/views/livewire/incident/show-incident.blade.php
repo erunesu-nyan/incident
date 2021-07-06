@@ -172,11 +172,11 @@
                             </x-jet-button>
                         </div>
                     @endif
-                    <div class="mt-4">
+                    <!-- <div class="mt-4">
                         <x-jet-button wire:click="addActionProofImage" wire:loading.attr="disabled" class="mb-4">
                             Add Proof Image
                         </x-jet-button>
-                    </div>
+                    </div> -->
                 </div>
             @else
                 @if ($incident->isCollaborator(Auth::user()))
